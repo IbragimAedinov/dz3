@@ -1,17 +1,16 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const mainRouter = require("./routes/main");
+const gamesRouter = require("./routes/games");
 
 const app = express();
 const PORT = 3000;
-app.get("/", (req, res) => {
-  fs.readFile("./public/index.html", "utf-8").then((data) => {
-    res.header("Content-Type", "text/html");
-    res.send(data);
-  });
-});
-
-app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  express.static(path.join(__dirname, "public")),
+  mainRouter,
+  gamesRouter
+);
 app.listen(PORT, () => {
   console.log(`Приложение запущено тут: http:  //localhost:${PORT}`);
 });
