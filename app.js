@@ -1,13 +1,17 @@
 const express = require("express");
-const req = require("express/lib/request");
-const res = require("express/lib/response");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  fs.readFile("./public/index.html", "utf-8").then((data) => {
+    res.header("Content-Type", "text/html");
+    res.send(data);
+  });
 });
 
+app.use(express.static(path.join(__dirname, "public")));
 app.listen(PORT, () => {
   console.log(`Приложение запущено тут: http:  //localhost:${PORT}`);
 });
