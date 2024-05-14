@@ -1,4 +1,4 @@
-const { readData, writeData } = require(" .. /utils/data/parse");
+const { readData, writeData } = require("../utils/data/parse");
 const sendAllGames = async (req, res) => {
   res.send(req.games);
 };
