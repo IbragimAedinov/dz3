@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const mainRouter = require("./routes/main");
 const gamesRouter = require("./routes/games");
-
+const cors = require("./middlewares/cors");
 const app = express();
 const PORT = 3000;
 app.use(
