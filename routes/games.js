@@ -1,30 +1,33 @@
-const { sendAllGames, sendUpdatedGames } = require("../controllers/game");
-const {
-  getAllGames,
-  checkisTitleInAray,
-  updateGamesArray,
-  updateGamesFile,
-  findGamesById,
-  deleteGame,
-} = require("../middlewares/games");
-
 const gamesRouter = require("express").Router();
 
-gamesRouter.get("/games", getAllGames, sendAllGames);
-gamesRouter.delete(
-  "/games/ :id ",
+const {
   getAllGames,
+  checkIsTitleInArray,
+  updateGamesArray,
   updateGamesFile,
-  sendUpdatedGames,
-  findGamesById,
-  deleteGame
-);
+  findGameById,
+  deleteGame,
+} = require("../middlewares/games");
+const { sendAllGames, sendUpdatedGames } = require("../controllers/games");
+
+gamesRouter.get("/games", getAllGames, sendAllGames);
+
 gamesRouter.post(
   "/games",
   getAllGames,
-  checkisTitleInAray,
+  checkIsTitleInArray,
   updateGamesArray,
   updateGamesFile,
-  sendUpdatedGames
+  updateGamesArray
 );
+
+gamesRouter.delete(
+  "/games/:id",
+  getAllGames,
+  findGameById,
+  deleteGame,
+  updateGamesFile,
+  updateGamesArray
+);
+
 module.exports = gamesRouter;
